@@ -65,13 +65,36 @@ subset(students_grades_df, subset = Accounting > 80 & Legal_age == TRUE)
 6. Funciones, Condicionales y Bucles
 ```{r}
 #6.1
-students_projection <- function(matrizP){
-  
+students_projection <- function(matrixP, notConsiderCol){
+  for (rowNumber in 1:nrow(matrixP) ) {
+    for (colNumber in 1:ncol(matrixP)) {
+      if (!(colNumber %in% notConsiderCol)) {
+        print(paste("El valor en la fila No. ", rowNumber, " y columna No. ", colNumber, " es: ", matrixP[rowNumber, colNumber]))
+        
+        
+#6.2 - Start
+        #6.2.1
+        if (matrixP[rowNumber, colNumber] <= 45) {
+          print("Student at risk")
+        }
+        #6.2.2
+        else if(matrixP[rowNumber, colNumber] > 45 & matrixP[rowNumber, colNumber] < 61){
+          print("Student may be approved")
+        }
+        #6.2.3
+        else if(matrixP[rowNumber, colNumber] >= 61){
+          print("Student approved")
+        }
+#6.2- End
+
+      }
+    }
+  }
 }
 
 
+#6.3
 result_students
-
+#students_projection(result_students, c(5))
+students_projection(result_students, c(5,6))
 ```
-
-
